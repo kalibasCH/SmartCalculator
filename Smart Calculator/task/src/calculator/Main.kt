@@ -9,6 +9,7 @@ fun main() {
                 Bot().sayBye()
             }
             "" -> continue
+            "/help" -> Bot().sayHelp()
             else -> {
                 val sumOfInteger = SumOfInteger().returnSumOfInteger(inputData)
                 println(sumOfInteger)
@@ -20,6 +21,7 @@ fun main() {
 class Bot {
     fun readData() = readln()
     fun sayBye() = println("Bye!")
+    fun sayHelp() = println("The program calculates the sum of numbers")
 }
 
 class SumOfInteger {
