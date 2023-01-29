@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-01-29T09:20:39" hostname="MacBook-Air-Nikolaj.local" time="0.121">
+<testsuite name="Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-01-29T10:35:01" hostname="MacBook-Air-Nikolaj.local" time="0.079">
   <properties/>
-  <testcase name="start" classname="Test" time="0.121"/>
+  <testcase name="start" classname="Test" time="0.079"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
-> 0 1
-1
+> /exit
+Bye!
 ?[1;31m
 Start test 2?[0m
-> 1 0
-1
+> 17 9
+26
+> -2 5
+3
+> 
+> 7
+7
+> /exit
+Bye!
 ?[1;31m
 Start test 3?[0m
-> 5 7
-12
-?[1;31m
-Start test 4?[0m
-> 100 123
-223
-?[1;31m
-Start test 5?[0m
-> -1 5
-4
-?[1;31m
-Start test 6?[0m
-> 5 -2
-3
-?[1;31m
-Start test 7?[0m
-> -300 -400
--700
+> 100 200
+300
+> 500
+500
+> 300 -400
+-100
+> 
+> -500
+-500
+> 1 -1
+0
+> /exit
+Bye!
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
