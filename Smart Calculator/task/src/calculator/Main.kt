@@ -1,24 +1,35 @@
 fun main() {
     var statusToExit = false
     while (!statusToExit) {
-        when (val inputData = Bot().readData()) {
-            "/exit" -> {
-                statusToExit = true
-                Bot().sayBye()
+        val regexOfExpression = "(( ?[+-]*?\\d+)( [+-]*)?)+".toRegex()
+        val regexForUnknownCommand = "\\/\\w*".toRegex()
+        val inputData = Bot.readData()
+        if (regexOfExpression.matches(inputData.replace("\\s".toRegex(), ""))) {
+            val sumOfInteger = Calculator().performCalculation(inputData)
+            Bot.getAnswer(sumOfInteger)
+        } else if (regexForUnknownCommand.matches(inputData)) {
+            when (inputData) {
+                "/exit" -> {
+                    statusToExit = true
+                    Bot.sayBye()
+                }
+                "/help" -> Bot.sayHelp()
+                else -> Bot.sayUnknownCommand()
             }
-            "" -> continue
-            "/help" -> Bot().sayHelp()
-            else -> {
-                val sumOfInteger = Calculator().performCalculation(inputData)
-                println(sumOfInteger)
-            }
+        } else if (inputData.trim() == "") {
+            continue
+        } else {
+            Bot.sayInvalidExpression()
         }
     }
 }
 
-class Bot {
+object Bot {
+    fun getAnswer(answer: Int) = println(answer)
     fun readData() = readln()
     fun sayBye() = println("Bye!")
+    fun sayUnknownCommand() = println("Unknown command")
+    fun sayInvalidExpression() = println("Invalid expression")
     fun sayHelp() = println(
         """It means that from now on the program must receive the addition + 
         |and subtraction - operators as an input to distinguish operations from each other. 
@@ -44,7 +55,8 @@ class Calculator {
         for (element in inputListOfInt) {
             val indexOfElementInList = elementsOfCalculation.indexOf(element)
             when {
-                element == "-" -> elementsOfCalculation = multiplyNextIntByMinusOne(elementsOfCalculation)
+                element == "-" -> elementsOfCalculation =
+                    multiplyNextIntByMinusOne(elementsOfCalculation)
                 checkThatItInt(element) -> continue
                 else -> {
                     if (element.length % 2 == 0 && element[0] == '-') {
